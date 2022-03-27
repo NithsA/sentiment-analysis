@@ -1,0 +1,6 @@
+.DS_STORE
+# Don't version the datasets 
+data/*
+# Don't version others' work, except for external links
+papers/*
+!papers/paper_urls.txt

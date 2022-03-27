@@ -1,6 +1,6 @@
 ## Tweet Sentiment Analysis project
-----
-## Authors
+
+### Authors
 #### Bradley Payne
 #### Nithya Alavala
 ---

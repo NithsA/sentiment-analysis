@@ -1,4 +1,7 @@
+# Mac Garbage 
 .DS_STORE
+# Temp files
+~*
 # Don't version the datasets 
 data/*
 # Don't version others' work, except for external links

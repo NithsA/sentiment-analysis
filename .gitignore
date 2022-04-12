@@ -2,6 +2,7 @@
 .DS_STORE
 # Temp files
 ~*
+__pycache__
 # Don't version the datasets 
 data/*
 # Don't version others' work, except for external links

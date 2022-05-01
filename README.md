@@ -21,33 +21,45 @@ One area that we would like to explore is the use of emojis in sentiment analysi
     - labeled with 0 for negative, 4 for positive tweets
     - Dataset does NOT contain emojis
 
-- [Emoji sentiment summary](https://www.kaggle.com/datasets/thomasseleck/emoji-sentiment-data)
-    - result of work done [Here](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296)
-    - contains the # occurences of a series of tweets in positive and negative tweets of an un-named dataset 
-    - contains a word description of different emojis
-
-- [Emoji dataset](https://github.com/zhengrui315/Twitter-Sentiment-Analysis/tree/master/data)
-    - contains tweet dataset with emojis, but they are not labeled 
+- [GloVe vectors for word representation](https://www.kaggle.com/datasets/rtatman/glove-global-vectors-for-word-representation)
+    - Pretrained word embedding 
 ---
 
-## Models and results
-Our plan is to run the 1.6M dataset through the following models:
+## Models
+We used the following methods
 
 * Random Forest
+* Decision Tree
 * Naive Bayes
 * SVM - Classifier
-* KNN
-* RNN
+* LSTM
+* BERT 
 
-Then, we can choose the model with the best results to focus hypertuning. 
-
-Currently, the file `data_exploration.ipynb` cleans the tweets of punctuation, stopwords, emojis, urls, mentions, and converts it to a Bag-of-word representation. 
-
-Then it trains a classifer using 100,00 tweets as the training and 30% of the dataset as a testing set. Doing this, the random forest took 2 hours to fit and had an accuracy of 75.1%
-
----
-
-## TODO
-* convert the cleaning data into a python class in a `.py` file so it can be reused
-* convert the BOW representation into a tokenization method since that is typically better
-* fit each of the models indicated using a consistant(seeded) train/test split 
+## SRC files
+Below is a brief summary of each of the source code files
+- ### [attention.ipynb](/src/attention.ipynb)
+    - Contains the LSTM with the added attention layer
+- ### [bert-pretrained.ipynb](/src/bert-pretrained.ipynb)
+    - Implements a version of BERT from the huggingface transformers library
+    - Trains BERT for 2 epochs
+    - Evaluates on the test set
+- ### [data_exploration.ipynb](/src/data_exploration.ipynb)
+    - Our first notebook to explore the data
+    - Fits the random forest as proof of concept 
+- ### [data_pipeline.py](/src/data_pipeline.py)
+    - Defines a data preprocessing pipeline that:
+        - Loads the data
+        - Cleans
+        - Tokenizes
+        - Splits into testing and training sets
+- ### [lstm_models.ipynb](/src/lstm_models.ipynb)
+    - Fits an LSTM model on:
+        - Raw data
+        - Preprocessed data
+- ### [models.ipynb](/src/models.ipynb)
+    - Uses `data_pipeline.py` functionality to get training and testing set
+    - Fits `sklearn` models:
+        - Naive Bayes
+        - SVM
+        - Decision Tree
+        - Random Forest
